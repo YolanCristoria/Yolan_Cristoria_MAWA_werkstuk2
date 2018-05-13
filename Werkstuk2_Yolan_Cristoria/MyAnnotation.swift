@@ -18,4 +18,3 @@ class MyAnnotation: NSObject, MKAnnotation {
         self.title = title
     }
 }
-

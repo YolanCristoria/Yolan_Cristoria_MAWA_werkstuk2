@@ -15,9 +15,6 @@ class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     var locationManager = CLLocationManager();
     
-    @IBOutlet weak var lbltestlabel: UILabel!
-    
-    
     @IBOutlet weak var myMapview: MKMapView!
     
     override func viewDidLoad() {
@@ -31,9 +28,9 @@ class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         
         //JSON
+        //bron
+        //https://www.youtube.com/watch?v=IlKf-HMyIDk
         let url = URL(string: "https://api.jcdecaux.com/vls/v1/stations?apiKey=6d5071ed0d0b3b68462ad73df43fd9e5479b03d6&contract=Bruxelles-Capitale")
-        
-        var stations: [Station] = []
         
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error != nil {
@@ -44,16 +41,17 @@ class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                         let myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
                         
                         //ARRAY VAN Dictionaries
-                        let jsonarray = myJson as? NSArray
+                        let jsonArray = myJson as? NSArray
                         
-                        jsonarray?.forEach { dictionary in
+                        //json ARRAY
+                        jsonArray?.forEach { dictionary in
                             let dict = dictionary as! NSDictionary
 //                            print(dict)
                             
                             //ANNOTATIONS
                             var mycoord = dict.value(forKey: "position") as! NSDictionary
                             
-                            print(mycoord)
+//                            print(mycoord)
                             var mycoordlocation = CLLocationCoordinate2D(latitude: mycoord["lat"] as! Double, longitude: mycoord["lng"] as! Double)
                             
                             let theAnnotation = MyAnnotation(coordinate: mycoordlocation, title: dict["name"] as! String)

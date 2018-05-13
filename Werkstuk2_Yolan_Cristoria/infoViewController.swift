@@ -13,61 +13,62 @@ class infoViewController: UIViewController, UIApplicationDelegate {
     
     @IBOutlet weak var lblLastUpdated: UILabel!
     
+    var station:[Station]? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        //JSON WITH CORE DATA
+        //BRON:
+        //https://www.youtube.com/watch?v=cL68k-2yINY
+        let url = URL(string: "https://api.jcdecaux.com/vls/v1/stations?apiKey=6d5071ed0d0b3b68462ad73df43fd9e5479b03d6&contract=Bruxelles-Capitale")
+
+        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if error != nil {
+                print("error")
+            } else {
+                if let content = data {
+                    do {
+                        let myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+
+                        //ARRAY VAN Dictionaries
+                        let jsonArray = myJson as? NSArray
+
+                        //DATA CORE ARRAY
+                        jsonArray?.forEach { dictionary in
+                            let dict = dictionary as! NSDictionary
+
+                            if CoreDataHandler.saveObject(
+                                name: (dict["name"] as? String)!,
+                                number: (dict["number"] as? Int)!,
+                                available_bike_stands: (dict["available_bike_stands"] as? Int)!,
+                                available_bikes: (dict["available_bikes"] as? Int)!,
+                                bike_stands: (dict["bike_stands"] as? Int)!,
+                                address: (dict["address"] as? String)!,
+                                banking: (dict["banking"] as? Bool)!,
+                                bonus: (dict["bonus"] as? Bool)!,
+                                contract_name: (dict["contract_name"] as? String)!,
+                                last_update: (dict["last_update"] as? Int)!,
+                                status: (dict["status"] as? String)!
+
+                                ) {
+                                self.station = CoreDataHandler.fetchObject()
+                            }
+                        }
+                    } catch {
+
+                    }
+                }
+            }
+        }
+        task.resume()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    //COREDATA FUNCTIONS IS NIET GELUKT!!
-    
-//    func storeItem(_ entity:String, _ data_to_add:[String:Any])
-//    {
-//
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        let managedContext = appDelegate.persistentContainer.viewContext
-//        let entity = NSEntityDescription.entity(forEntityName: entity, in: managedContext)
-//        let obj = NSManagedObject(entity: entity!, insertInto: managedContext)
-//
-//        for (key,value) in data_to_add {
-//            obj.setValue(value, forKey: key)
-//        }
-//        do {
-//            try managedContext.save()
-//        } catch {
-//            print("Error: \(error)")
-//        }
-//
-//    }
-//
-//
-//    func readItems(_ entity:String) -> [AnyObject]
-//    {
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//
-//        let managedContext = appDelegate.persistentContainer.viewContext
-//
-//        let fetchRequest: NSFetchRequest<NSFetchRequestResult>  = NSFetchRequest(entityName: entity)
-//
-//        do
-//        {
-//            let fetchResults = try managedContext.fetch(fetchRequest)
-//
-//            if let results = fetchResults as? [NSManagedObject]
-//            {
-//                return results
-//            }
-//        }
-//        catch
-//        {
-//        }
-//
-//        return  [AnyObject]()
-//    }
     /*
     // MARK: - Navigation
 
