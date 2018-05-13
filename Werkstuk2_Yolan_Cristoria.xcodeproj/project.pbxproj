@@ -15,6 +15,11 @@
 		659EFE4520A702C200AF17DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 659EFE4320A702C200AF17DE /* LaunchScreen.storyboard */; };
 		659EFE5020A702C200AF17DE /* Werkstuk2_Yolan_CristoriaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659EFE4F20A702C200AF17DE /* Werkstuk2_Yolan_CristoriaTests.swift */; };
 		659EFE5B20A702C200AF17DE /* Werkstuk2_Yolan_CristoriaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659EFE5A20A702C200AF17DE /* Werkstuk2_Yolan_CristoriaUITests.swift */; };
+		659EFE6920A70A5400AF17DE /* infoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659EFE6820A70A5400AF17DE /* infoViewController.swift */; };
+		659EFE6B20A70A7500AF17DE /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659EFE6A20A70A7500AF17DE /* mapViewController.swift */; };
+		659EFE6E20A70C3F00AF17DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 659EFE6D20A70C3F00AF17DE /* MapKit.framework */; };
+		659EFE7220A738BE00AF17DE /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659EFE7120A738BE00AF17DE /* CoreDataHandler.swift */; };
+		659EFE7420A8471700AF17DE /* MyAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659EFE7320A8471700AF17DE /* MyAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		659EFE5620A702C200AF17DE /* Werkstuk2_Yolan_CristoriaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Werkstuk2_Yolan_CristoriaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		659EFE5A20A702C200AF17DE /* Werkstuk2_Yolan_CristoriaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Werkstuk2_Yolan_CristoriaUITests.swift; sourceTree = "<group>"; };
 		659EFE5C20A702C200AF17DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		659EFE6820A70A5400AF17DE /* infoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = infoViewController.swift; sourceTree = "<group>"; };
+		659EFE6A20A70A7500AF17DE /* mapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
+		659EFE6D20A70C3F00AF17DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		659EFE7120A738BE00AF17DE /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
+		659EFE7320A8471700AF17DE /* MyAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				659EFE6E20A70C3F00AF17DE /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +94,7 @@
 				659EFE4E20A702C200AF17DE /* Werkstuk2_Yolan_CristoriaTests */,
 				659EFE5920A702C200AF17DE /* Werkstuk2_Yolan_CristoriaUITests */,
 				659EFE3520A702C200AF17DE /* Products */,
+				659EFE6C20A70C3F00AF17DE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +118,10 @@
 				659EFE4320A702C200AF17DE /* LaunchScreen.storyboard */,
 				659EFE4620A702C200AF17DE /* Info.plist */,
 				659EFE3E20A702C200AF17DE /* Werkstuk2_Yolan_Cristoria.xcdatamodeld */,
+				659EFE6820A70A5400AF17DE /* infoViewController.swift */,
+				659EFE6A20A70A7500AF17DE /* mapViewController.swift */,
+				659EFE7120A738BE00AF17DE /* CoreDataHandler.swift */,
+				659EFE7320A8471700AF17DE /* MyAnnotation.swift */,
 			);
 			path = Werkstuk2_Yolan_Cristoria;
 			sourceTree = "<group>";
@@ -126,6 +142,14 @@
 				659EFE5C20A702C200AF17DE /* Info.plist */,
 			);
 			path = Werkstuk2_Yolan_CristoriaUITests;
+			sourceTree = "<group>";
+		};
+		659EFE6C20A70C3F00AF17DE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				659EFE6D20A70C3F00AF17DE /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +221,11 @@
 					659EFE3320A702C200AF17DE = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					659EFE4A20A702C200AF17DE = {
 						CreatedOnToolsVersion = 9.2;
@@ -262,8 +291,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				659EFE7420A8471700AF17DE /* MyAnnotation.swift in Sources */,
 				659EFE3A20A702C200AF17DE /* ViewController.swift in Sources */,
+				659EFE7220A738BE00AF17DE /* CoreDataHandler.swift in Sources */,
+				659EFE6B20A70A7500AF17DE /* mapViewController.swift in Sources */,
 				659EFE4020A702C200AF17DE /* Werkstuk2_Yolan_Cristoria.xcdatamodeld in Sources */,
+				659EFE6920A70A5400AF17DE /* infoViewController.swift in Sources */,
 				659EFE3820A702C200AF17DE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,7 +469,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ehb.Werkstuk2-Yolan-Cristoria";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -450,7 +483,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ehb.Werkstuk2-Yolan-Cristoria";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
